@@ -4,7 +4,7 @@ CREATE TABLE "events" (
     "title" TEXT NOT NULL,
     "details" TEXT,
     "slug" TEXT NOT NULL,
-    "maximum_attendees" INTEGER NOT NULL
+    "maximum_attendees" INTEGER
 );
 
 -- CreateIndex
