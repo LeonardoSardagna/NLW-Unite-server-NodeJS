@@ -2,7 +2,6 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
 import { prisma } from "../lib/prisma";
-import { title } from "process";
 import { BadRequest } from "../_erros/bad-request";
 
 export async function getEvent(app: FastifyInstance){
@@ -55,7 +54,7 @@ export async function getEvent(app: FastifyInstance){
                 slug: event.slug,
                 details: event.details,
                 maximumAttendees: event.maximumAttendees,
-                attendees: event._count.attendees,
+                attendeesAmount: event._count.attendees,
             }
         })
     })

@@ -12,7 +12,7 @@ export async function getAttendeeBadge(app: FastifyInstance){
             summary: 'Get event attendee badge',
             tags:['attendees'],
             params: z.object({
-                attendeeId: z.string().transform(Number),
+                attendeeId: z.coerce.number().int(),
             }),
             response:{
                 200: z.object({
@@ -34,9 +34,8 @@ export async function getAttendeeBadge(app: FastifyInstance){
                 event:{
                     select:{
                         title:true,
-                    }
-                }
-                
+                    },
+                },
             },
             where: {
                 id: attendeeId,

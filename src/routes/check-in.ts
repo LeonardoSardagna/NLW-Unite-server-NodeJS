@@ -1,11 +1,12 @@
-import { FastifyInstance, FastifyTypeProvider } from "fastify";
+import { FastifyInstance} from "fastify";
 import z from "zod";
 import { prisma } from "../lib/prisma";
 import { BadRequest } from "../_erros/bad-request";
+import { ZodTypeProvider } from "fastify-type-provider-zod";
 
 export async function checkIn(app: FastifyInstance){
     app
-    .withTypeProvider<FastifyTypeProvider>()
+    .withTypeProvider<ZodTypeProvider>()
     .get('/attendees/:attendeeId/check-in', {
         schema:{
             summary: 'Checki-in an attendees',
