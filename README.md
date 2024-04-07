@@ -30,7 +30,7 @@ Para executar o back-end localmente, siga os passos abaixo:
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/Lag0/nlw-unite-nodejs.git
+git clone https://github.com/LeonardoSardagna/NLW-Unite-server-NodeJS.git
 cd nlw-unite-nodejs
 ```
 
