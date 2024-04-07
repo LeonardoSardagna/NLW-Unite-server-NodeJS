@@ -24,3 +24,11 @@ GET http://localhost:3333/events/1e9f0b90-6853-44ad-ba73-c3b6a861a668
 ###
 
 GET http://localhost:3333/attendees/1/badge
+
+###
+
+GET http://localhost:3333/attendees/6/check-in
+
+###
+
+GET http://localhost:3333/events/1e9f0b90-6853-44ad-ba73-c3b6a861a668/attendees?query=leonardo
