@@ -1,82 +1,83 @@
-# pass.in
+# Pass.in Back-end
 
-O pass.in é uma aplicação de **gestão de participantes em eventos presenciais**. 
+O Pass.in é uma aplicação para **gestão de participantes em eventos presenciais**, permitindo que organizadores cadastrem eventos e gerenciem inscrições e check-ins de participantes de maneira eficiente.
 
-A ferramenta permite que o organizador cadastre um evento e abra uma página pública de inscrição.
+Esta aplicação back-end lida com todas as operações de dados, desde o cadastro de eventos até a gestão de participantes e o processamento de check-ins.
 
-Os participantes inscritos podem emitir uma credencial para check-in no dia do evento.
+## Funcionalidades
 
-O sistema fará um scan da credencial do participante para permitir a entrada no evento.
+O back-end do Pass.in suporta as seguintes funcionalidades:
 
-## Requisitos
+- O organizador pode cadastrar um novo evento;
+- O organizador pode visualizar dados de um evento;
+- O organizador pode visualizar a lista de participantes;
+- O organizador pode realizar o check-in de um participante;
+- O participante pode se inscrever em um evento;
+- O participante pode visualizar seu crachá de inscrição;
+- O participante pode realizar check-in no evento;
 
-### Requisitos funcionais
+## Tecnologias Utilizadas
 
-- [x] O organizador deve poder cadastrar um novo evento;
-- [x] O organizador deve poder visualizar dados de um evento;
-- [x] O organizador deve poser visualizar a lista de participantes; 
-- [x] O participante deve poder se inscrever em um evento;
-- [x] O participante deve poder visualizar seu crachá de inscrição;
-- [x] O participante deve poder realizar check-in no evento;
+- **Node.js** e **Fastify** para a construção do servidor
+- **Prisma** como ORM para o gerenciamento do banco de dados
+- **SQLite** para desenvolvimento e **PostgreSQL** para produção
+- **Swagger** para documentação da API
 
-### Regras de negócio
+## Executando Localmente
 
-- [x] O participante só pode se inscrever em um evento uma única vez;
-- [x] O participante só pode se inscrever em eventos com vagas disponíveis;
-- [x] O participante só pode realizar check-in em um evento uma única vez;
+Para executar o back-end localmente, siga os passos abaixo:
 
-### Requisitos não-funcionais
+1. Clone o repositório:
 
-- [x] O check-in no evento será realizado através de um QRCode;
-
-## Documentação da API (Swagger)
-
-Para documentação da API, acesse o link: https://nlw-unite-nodejs.onrender.com/docs
-
-## Banco de dados
-
-Nessa aplicação vamos utilizar banco de dados relacional (SQL). Para ambiente de desenvolvimento seguiremos com o SQLite pela facilidade do ambiente.
-
-### Diagrama ERD
-
-<img src=".github/erd.svg" width="600" alt="Diagrama ERD do banco de dados" />
-
-### Estrutura do banco (SQL)
-
-```sql
--- CreateTable
-CREATE TABLE "events" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "title" TEXT NOT NULL,
-    "details" TEXT,
-    "slug" TEXT NOT NULL,
-    "maximum_attendees" INTEGER
-);
-
--- CreateTable
-CREATE TABLE "attendees" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "event_id" TEXT NOT NULL,
-    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "attendees_event_id_fkey" FOREIGN KEY ("event_id") REFERENCES "events" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "check_ins" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "attendeeId" INTEGER NOT NULL,
-    CONSTRAINT "check_ins_attendeeId_fkey" FOREIGN KEY ("attendeeId") REFERENCES "attendees" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateIndex
-CREATE UNIQUE INDEX "events_slug_key" ON "events"("slug");
-
--- CreateIndex
-CREATE UNIQUE INDEX "attendees_event_id_email_key" ON "attendees"("event_id", "email");
-
--- CreateIndex
-CREATE UNIQUE INDEX "check_ins_attendeeId_key" ON "check_ins"("attendeeId");
+```bash
+git clone https://github.com/Lag0/nlw-unite-nodejs.git
+cd nlw-unite-nodejs
 ```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Crie um arquivo `.env` na raiz do projeto com a seguinte linha, que configura o banco de dados para usar SQLite no ambiente de desenvolvimento:
+
+```env
+DATABASE_URL="file:./dev.db"
+```
+
+4. Atualize o `schema.prisma` para usar SQLite:
+
+De:
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+
+Para:
+
+```prisma
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+```
+
+5. Execute as migrações para criar o banco de dados:
+
+```bash
+npx prisma migrate dev
+```
+
+6. Inicie o servidor:
+
+```bash
+npm run dev
+```
+
+A API agora estará rodando localmente e acessível via `http://localhost:3333`.
+
+---
