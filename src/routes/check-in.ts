@@ -33,6 +33,6 @@ export async function checkIn(app: FastifyInstance){
                 attendeeId,
             }
         })
-        return reply.status(200).send()
+        return reply.status(201).send()
     })
 }

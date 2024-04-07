@@ -2,33 +2,34 @@ POST http://localhost:3333/events
 Content-Type: application/json
 
 {
-    "title": "Evento",
+    "title": "Unite Summit",
     "details": "evento para quem é apaixonado por programação",
-    "maximumAttendees": 5
+    "maximumAttendees": 30
 }
 
 ###
 
-POST http://localhost:3333/events/1e9f0b90-6853-44ad-ba73-c3b6a861a668/attendees
+POST http://localhost:3333/events/12d1dd79-48ed-4656-9ce5-61828fc7cb86/attendees
 Content-Type: application/json
 
 {
-    "name": "Leonardo Sardagna",
-    "email": "leonardosardagna@gmail.com"
+    "name": "Leonardo Souza",
+    "email": "leonardo.souza@email.com"
 }
 
 ###
 
-GET http://localhost:3333/events/1e9f0b90-6853-44ad-ba73-c3b6a861a668
+GET http://localhost:3333/events/12d1dd79-48ed-4656-9ce5-61828fc7cb86
 
 ###
 
-GET http://localhost:3333/attendees/1/badge
+GET http://localhost:3333/attendees/11/badge
 
 ###
 
-GET http://localhost:3333/attendees/6/check-in
+GET http://localhost:3333/attendees/11/check-in
+
 
 ###
 
-GET http://localhost:3333/events/1e9f0b90-6853-44ad-ba73-c3b6a861a668/attendees?query=leonardo
+GET http://localhost:3333/events/12d1dd79-48ed-4656-9ce5-61828fc7cb86/attendees?query=leonardo
