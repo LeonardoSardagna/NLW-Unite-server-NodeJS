@@ -47,6 +47,9 @@ app.register(getEventAttendees)
 
 app.setErrorHandler(erroHandler)
 
-app.listen({ port:3333, host: '0.0.0.0' }).then(() => {
+app.listen({ 
+    host: '0.0.0.0',
+    port: process.env.PORT ? Number(process.env.PORT) : 3333,
+}).then(() => {
     console.log('HTTP server running!')
 })

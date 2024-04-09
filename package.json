@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "O pass.in é uma aplicação de **gestão de participantes em eventos presenciais**.",
   "main": "index.js",
+  "engines": {
+    "node": "20.12.1"
+  },
   "scripts": {
     "dev": "tsx watch --env-file .env src/server.ts",
     "build": "tsup src --format esm",
