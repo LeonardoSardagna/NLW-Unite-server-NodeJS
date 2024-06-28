@@ -1,54 +1,54 @@
 # Pass.in Back-end
 
-O Pass.in é uma aplicação para **gestão de participantes em eventos presenciais**, permitindo que organizadores cadastrem eventos e gerenciem inscrições e check-ins de participantes de maneira eficiente.
+Pass.in is an application for managing participants in in-person events, allowing organizers to register events and manage participant registrations and check-ins efficiently.
 
-Esta aplicação back-end lida com todas as operações de dados, desde o cadastro de eventos até a gestão de participantes e o processamento de check-ins.
+This back-end application handles all data operations, from event registration to participant management and check-in processing.
 
-## Funcionalidades
+## Features
 
-O back-end do Pass.in suporta as seguintes funcionalidades:
+The Pass.in back-end supports the following features:
 
-- O organizador pode cadastrar um novo evento;
-- O organizador pode visualizar dados de um evento;
-- O organizador pode visualizar a lista de participantes;
-- O organizador pode realizar o check-in de um participante;
-- O participante pode se inscrever em um evento;
-- O participante pode visualizar seu crachá de inscrição;
-- O participante pode realizar check-in no evento;
+- The organizer can register a new event;
+- The organizer can view event details;
+- The organizer can view the participant list;
+- The organizer can check in a participant;
+- The participant can register for an event;
+- The participant can view their registration badge;
+- The participant can check in at the event;
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-- **Node.js** e **Fastify** para a construção do servidor
-- **Prisma** como ORM para o gerenciamento do banco de dados
-- **SQLite** para desenvolvimento e **PostgreSQL** para produção
-- **Swagger** para documentação da API
+- **Node.js** and **Fastify** for server construction
+- **Prisma** as ORM for database management
+- **SQLite** for development and PostgreSQL for production
+- **Swagger** for API documentation
 
-## Executando Localmente
+## Running Locally
 
-Para executar o back-end localmente, siga os passos abaixo:
+To run the back-end locally, follow these steps:
 
-1. Clone o repositório:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/LeonardoSardagna/NLW-Unite-server-NodeJS.git
 cd nlw-unite-nodejs
 ```
 
-2. Instale as dependências:
+2. Install the dependencies:
 
 ```bash
 npm install
 ```
 
-3. Crie um arquivo `.env` na raiz do projeto com a seguinte linha, que configura o banco de dados para usar SQLite no ambiente de desenvolvimento:
+3. Create a .env file in the project root with the following line, configuring the database to use SQLite in the development environment:
 
 ```env
 DATABASE_URL="file:./dev.db"
 ```
 
-4. Atualize o `schema.prisma` para usar SQLite:
+4. Update `schema.prisma` to use SQLite:
 
-De:
+From:
 
 ```prisma
 datasource db {
@@ -57,7 +57,7 @@ datasource db {
 }
 ```
 
-Para:
+To:
 
 ```prisma
 datasource db {
@@ -66,18 +66,18 @@ datasource db {
 }
 ```
 
-5. Execute as migrações para criar o banco de dados:
+5. Run the migrations to create the database:
 
 ```bash
 npx prisma migrate dev
 ```
 
-6. Inicie o servidor:
+6. Start the server:
 
 ```bash
 npm run dev
 ```
 
-A API agora estará rodando localmente e acessível via `http://localhost:3333`.
+The API will now be running locally and accessible via `http://localhost:3333`.
 
 ---
